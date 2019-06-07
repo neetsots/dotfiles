@@ -25,11 +25,43 @@ call plug#begin('~/.config/nvim/plugged')
         map <Leader>n :NERDTreeToggle<CR>
 " >>>>
 
+" Linting
+" <<<<
+	Plug 'scrooloose/syntastic'
+
+	let g:syntastic_always_populate_loc_list = 0
+	let g:syntastic_auto_loc_list = 0
+	let g:syntastic_check_on_open = 0
+	let g:syntastic_check_on_wq = 0
+	let g:syntastic_check_on_w = 0
+    let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+    nnoremap <Leader>l :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+" >>>>
+
+" StatusLine
+" <<<<
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+        let g:airline_powerline_fonts = 1
+        let g:airline#extensions#tabline#enabled = 1
+        let g:airline_theme='dracula'
+    Plug 'edkolev/tmuxline.vim'
+        let g:tmuxline_separators = {
+            \ 'left' : '',
+            \ 'left_alt' : '',
+            \ 'right' : '',
+            \ 'right_alt' : '',
+            \ 'space' : ' '}
+
+" >>>>
+
 " Completion
 " <<<<
   Plug 'shougo/deoplete.nvim'
 	  let g:deoplete#enable_at_startup = 1
   Plug 'deoplete-plugins/deoplete-jedi'
+  Plug 'sebastianmarkow/deoplete-rust'
+  	let g:deoplete#sources#rust#racer_binary='$HOME/.cargo/bin/racer'
 " >>>>
 
 " Syntax
@@ -82,17 +114,42 @@ nnoremap  <C-h>  <C-W><C-H>↲
 nmap <Leader>b :ls<CR>:buffer<Space>
 
 "-- StatusLine --------------------------------------------------------
-set laststatus=2
-set statusline=
-set statusline+=%#Type#
-set statusline+=\|\ %f
-set statusline+=\ \\\ %m
-set statusline+=%=
-set statusline+=%#Conditional#
-set statusline+=\ \/\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\ \/\ %{&fileformat}
-set statusline+=\ \/\ %l:%c
-set statusline+=\ (%p%%)
+"function! InsertStatuslineColor(mode)
+"  if a:mode == 'i'
+"    hi statusline guibg=#6ecdff
+"    hi left guifg=#222327 guibg=#6ecdff
+"    hi right guifg=#222327 guibg=#6ecdff
+"  elseif a:mode == 'r'
+"    hi StatusLine guibg=#f3425c
+"    hi left guifg=#222327 guibg=#f3425c
+"    hi right guifg=#222327 guibg=#f3425c
+"  else
+"    hi statusline guibg=#222327
+"    hi left guifg=#6ecdff guibg=#222327
+"    hi right guifg=#6effa0 guibg=#222327
+"  endif
+"endfunction
+"
+"au InsertEnter * call InsertStatuslineColor(v:insertmode)
+"au InsertChange * call InsertStatuslineColor(v:insertmode)
+"au InsertLeave * call InsertStatuslineColor("normal")
+"hi left guifg=#6ecdff guibg=#222327
+"hi right guifg=#6effa0 guibg=#222327
+"
+"set laststatus=2
+"set statusline=
+"set statusline+=%#left#
+"set statusline+=\|\ %f
+"set statusline+=\ \"\uE0A3"\ %m
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"set statusline+=%=
+"set statusline+=%#right#
+"set statusline+=\ \/\ %{&fileencoding?&fileencoding:&encoding}
+"set statusline+=\ \/\ %{&fileformat}
+"set statusline+=\ \/\ %l:%c
+"set statusline+=\ (%p%%)
 
 "-- NVIM searching ----------------------------------------------------
 set hlsearch
@@ -108,6 +165,7 @@ nnoremap <esc>^[ <esc>^[
 "-- Trailing ----------------------------------------------------------
 au BufWritePre * %s/\s\+$//e
 au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
+au BufWinLeave *.py !autopep8 --agressive %:p
 
 "-- Jupyter notebooks -------------------------------------------------
 autocmd Filetype ipynb nmap <silent><Leader>jb :VimpyterInsertPythonBlock<CR>
@@ -122,10 +180,10 @@ colorscheme tetradic
 set shell=bash
 
 nnoremap <Leader>s :Rg <C-r><C-w><CR>
-nnoremap <Leader>k :resize +5<CR>
-nnoremap <Leader>j :resize -5<CR>
-nnoremap <Leader>l :vertical resize +5<CR>
-nnoremap <Leader>h :vertical resize -5<CR>
+"nnoremap <Leader>k :resize +5<CR>
+"nnoremap <Leader>j :resize -5<CR>
+"nnoremap <Leader>l :vertical resize +5<CR>
+"nnoremap <Leader>h :vertical resize -5<CR>
 set showbreak=↪\
 set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set list
@@ -138,7 +196,7 @@ set nofoldenable
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set noexpandtab
+set expandtab
 set noshiftround
 set lazyredraw
 
