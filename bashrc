@@ -1,8 +1,7 @@
-
 # ------ PS1
 source ~/.config/git/git-prompt.sh
 export -f __git_ps1
-export PS1='/\e[34m\u\e[37m|\e[33m\w \e[35m$(__git_ps1)\e[37m\n\> '
+export PS1='/\e[34m\u\e[37m|\e[33m\w \e[35m $(__git_ps1) \e[37m\n\> '
 
 # ------ Improving Bash completion
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && \
@@ -19,4 +18,20 @@ export PS1='/\e[34m\u\e[37m|\e[33m\w \e[35m$(__git_ps1)\e[37m\n\> '
 alias ls='ls -G'
 alias ll='ls -lG'
 alias mkdir='mkdir -p'
+alias chrome=' /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 
+mk ()
+{
+    mkdir -p -- "$1" &&
+      cd -P -- "$1"
+}
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash

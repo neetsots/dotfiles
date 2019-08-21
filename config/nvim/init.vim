@@ -7,9 +7,9 @@
 let mapleader="\<Space>"
 
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
-	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall
+    autocmd VimEnter * PlugInstall
 endif
 
 call plug#begin('~/.config/nvim/plugged')
@@ -27,15 +27,16 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Linting
 " <<<<
-	Plug 'scrooloose/syntastic'
+    Plug 'scrooloose/syntastic'
 
-	let g:syntastic_always_populate_loc_list = 0
-	let g:syntastic_auto_loc_list = 0
-	let g:syntastic_check_on_open = 0
-	let g:syntastic_check_on_wq = 0
-	let g:syntastic_check_on_w = 0
-    let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 0
+    let g:syntastic_check_on_wq = 0
+    let g:syntastic_check_on_w = 0
+"    let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
     nnoremap <Leader>l :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+  Plug 'tell-k/vim-autopep8'
 " >>>>
 
 " StatusLine
@@ -55,13 +56,19 @@ call plug#begin('~/.config/nvim/plugged')
 
 " >>>>
 
+" IPython
+" <<<<
+    Plug 'Vigemus/iron.nvim'
+" >>>>
+
 " Completion
 " <<<<
   Plug 'shougo/deoplete.nvim'
-	  let g:deoplete#enable_at_startup = 1
+      let g:deoplete#enable_at_startup = 1
   Plug 'deoplete-plugins/deoplete-jedi'
   Plug 'sebastianmarkow/deoplete-rust'
-  	let g:deoplete#sources#rust#racer_binary='$HOME/.cargo/bin/racer'
+    let g:deoplete#sources#rust#racer_binary='$HOME/.cargo/bin/racer'
+  Plug 'tpope/vim-surround'
 " >>>>
 
 " Syntax
@@ -69,12 +76,15 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'mattn/emmet-vim'
   Plug 'othree/html5.vim'
   Plug 'rhysd/open-pdf.vim'
+  Plug 'thanethomson/vim-jenkinsfile'
   Plug 'cespare/vim-toml'
+  Plug 'leafgarland/typescript-vim'
 " >>>>
 "
 " Highlighting
 " <<<<
   Plug 'emmehandes/tetradic'
+  Plug 'dracula/dracula-theme', {'as': 'dracula'}
   Plug 'octol/vim-cpp-enhanced-highlight'
   Plug 'rust-lang/rust.vim'
   Plug 'fatih/vim-go'
@@ -82,6 +92,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'pangloss/vim-javascript'
   Plug 'plasticboy/vim-markdown'
   Plug 'dag/vim-fish'
+  Plug 'stephpy/vim-yaml'
+
 " >>>>
 "
 " Jupyter Notebooks
@@ -90,8 +102,9 @@ call plug#begin('~/.config/nvim/plugged')
 " >>>>
 " Git
 " <<<<
-  Plug 'tpope/vim-fugitive'
   Plug 'airblade/vim-gitgutter'
+  Plug 'tpope/vim-fugitive'
+  Plug 'junegunn/gv.vim'
 " >>>>
 call plug#end()
 
@@ -165,12 +178,16 @@ nnoremap <esc>^[ <esc>^[
 "-- Trailing ----------------------------------------------------------
 au BufWritePre * %s/\s\+$//e
 au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
-au BufWinLeave *.py !autopep8 --agressive %:p
+au BufWinLeave *.py !autopep8 %:p
 
 "-- Jupyter notebooks -------------------------------------------------
 autocmd Filetype ipynb nmap <silent><Leader>jb :VimpyterInsertPythonBlock<CR>
 autocmd Filetype ipynb nmap <silent><Leader>js :VimpyterStartJupyter<CR>
 autocmd Filetype ipynb nmap <silent><Leader>jn :VimpyterStartNteract<CR>
+
+"-- Yaml --------------------------------------------------------------
+autocmd FileType yaml execute
+      \'syn match yamlBlockMappingKey /^\s*\zs.*\ze\s*:\%(\s\|$\)/'
 
 "-- Completion --------------------------------------------------------
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
@@ -193,12 +210,14 @@ set directory=.config/nvim/swap/
 noremap <Leader>y "*y
 noremap <Leader>Y "+y
 set nofoldenable
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 set noshiftround
 set lazyredraw
 
 nnoremap <Leader>y :"*y<CR>
 nnoremap <Leader>Y :"+y<CR>
+
+luafile $HOME/.config/nvim/plugins.lua
