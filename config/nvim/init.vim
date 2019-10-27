@@ -1,6 +1,3 @@
-"**********************************************************************
-" NVIM Configuration
-"**********************************************************************
 let mapleader="\<Space>"
 
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -24,25 +21,19 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Linting
 " <<<<
-    Plug 'scrooloose/syntastic'
-
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_loc_list_height = 3
-    let g:syntastic_check_on_open = 0
-    let g:syntastic_check_on_wq = 0
-    let g:syntastic_check_on_w = 0
-    let g:syntastic_error_symbol = '❌'
-    let g:syntastic_style_error_symbol = '⁉️'
-    let g:syntastic_warning_symbol = '⚠️'
-    let g:syntastic_style_warning_symbol = '💩'
-    nnoremap <Leader>l :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+  Plug 'scrooloose/syntastic'
+      let g:syntastic_always_populate_loc_list = 1
+      let g:syntastic_auto_loc_list = 1
+      let g:syntastic_loc_list_height = 3
+      let g:syntastic_check_on_open = 0
+      let g:syntastic_check_on_wq = 0
+      let g:syntastic_check_on_w = 0
+      let g:syntastic_error_symbol = 'XX'
+      let g:syntastic_style_error_symbol = '??'
+      let g:syntastic_warning_symbol = '!!'
+      let g:syntastic_style_warning_symbol = '~~'
+      nnoremap <Leader>l :SyntasticCheck<CR> :SyntasticToggleMode<CR>
   Plug 'tell-k/vim-autopep8'
-" >>>>
-
-" StatusLine
-" <<<<
-"
 " >>>>
 
 " Langage server manager
