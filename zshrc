@@ -106,3 +106,4 @@ then
     tmux attach -t main || tmux new -s main
 fi
 alias python="python3"
+alias pip="pip3"

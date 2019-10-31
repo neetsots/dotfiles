@@ -129,8 +129,6 @@ set list
 set mouse=a
 set directory=.config/nvim/swap/
 
-noremap <Leader>y "*y
-noremap <Leader>Y "+y
 set nofoldenable
 set tabstop=2
 set softtabstop=2
@@ -139,5 +137,4 @@ set expandtab
 set noshiftround
 set lazyredraw
 
-nnoremap <Leader>y :"*y<CR>
-nnoremap <Leader>Y :"+y<CR>
+set clipboard+=unnamedplus
