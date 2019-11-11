@@ -19,6 +19,9 @@ alias ls='ls -G'
 alias ll='ls -lG'
 alias mkdir='mkdir -p'
 alias chrome=' /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias python='python3'
+alias pip='pip3'
+alias vim='nvim'
 
 mk ()
 {

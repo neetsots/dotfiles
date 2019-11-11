@@ -105,11 +105,6 @@ au BufWritePre * %s/\s\+$//e
 au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
 au BufWinLeave *.py !autopep8 %:p
 
-"-- Jupyter notebooks -------------------------------------------------
-autocmd Filetype ipynb nmap <silent><Leader>jb :VimpyterInsertPythonBlock<CR>
-autocmd Filetype ipynb nmap <silent><Leader>js :VimpyterStartJupyter<CR>
-autocmd Filetype ipynb nmap <silent><Leader>jn :VimpyterStartNteract<CR>
-
 "-- Yaml --------------------------------------------------------------
 autocmd FileType yaml execute
       \'syn match yamlBlockMappingKey /^\s*\zs.*\ze\s*:\%(\s\|$\)/'
