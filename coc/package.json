@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "coc-ccls": ">=0.0.5",
+    "coc-explorer": ">=0.2.17",
+    "coc-json": ">=1.2.4",
+    "coc-python": ">=1.2.7",
+    "coc-rls": ">=1.1.4",
+    "coc-rust-analyzer": ">=0.3.4",
+    "coc-tslint-plugin": ">=1.1.1",
+    "coc-tsserver": ">=1.4.9"
+  }
+}
