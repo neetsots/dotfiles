@@ -128,6 +128,8 @@ ino <C-c> <Esc>
 nnoremap <Leader>lv :so ~/.config/nvim/init.vim<CR>
 
 "-- Splits ------------------------------------------------------------
+set splitright
+set splitbelow
 nmap <Leader>v :vsp<CR>
 nmap <Leader>h :sp<CR>
 nnoremap  <C-j>  <C-W><C-J>↲
