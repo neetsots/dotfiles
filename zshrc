@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/elie.mitrani/.oh-my-zsh"
+export ZSH=".config/oh-my-zsh"
+ZSH_THEME="pure"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -16,41 +17,20 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # PLUGINS -----------------------------------------------------------------------------
-plugins=(
-    git
-    osx)
-
-source $ZSH/oh-my-zsh.sh
-
-# PATH -----------------------------------------------------------------------------
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/.cargo/bin:$PATH
-export PATH=$HOME/.npm-packages:$PATH
-export PATH=/usr/local/lib/node_modules/npm/node_modules:$PATH
-export PATH=/usr/local/lib/python3.7/site-packages:/Users/elie.mitrani/Library/Python/3.7/bin:$PATH
-export MANPATH="/usr/local/man:$MANPATH"
-export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
-fpath+=("$HOME/.zsh/pure")
+plugins=( git )
 
 # LANG -----------------------------------------------------------------------------
 export LANG=en_US.UTF-8
 
 # ALIASES -----------------------------------------------------------------------------
-alias pip="pip3"
-alias python="python3"
 alias nim="nvim"
 alias vim="nvim"
 alias vi="nvim"
 alias nvi="nvim"
-alias firefox="/Applications/Firefox\ Developer\ Edition.app/Contents/MacOS/firefox"
-alias emacs="/usr/local/opt/emacs/bin/emacs-26.2"
-alias gcc="gcc-9"
-alias g++="g++-9"
-alias git="/usr/local/Cellar/git/2.25.0_1/bin/git"
+alias ls='ls --color=auto'
 
 # PROMPT ------------------------------------------------------------------------------
 autoload -U promptinit; promptinit
-prompt pure
 
 PROMPT='%(?.%F{green}.%F{red}❯%F{green})❯%f '
 PURE_PROMPT_SYMBOL='%f%F{red}#%f %F{green}❯'
