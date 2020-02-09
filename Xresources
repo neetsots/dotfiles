@@ -1,0 +1,63 @@
+!! Colorscheme
+
+! special
+urxvt.foreground: #93a1a1
+urxvt.background: #141c21
+urxvt.cursorColor: #afbfbf
+
+! black
+urxvt.color0: #263640
+urxvt.color8: #4a697d
+
+! red
+urxvt.color1: #d12f2c
+urxvt.color9: #fa3935
+
+! green
+urxvt.color2: #819400
+urxvt.color10: #a4bd00
+
+! yellow
+urxvt.color3: #b08500
+urxvt.color11: #d9a400
+
+! blue
+urxvt.color4: #2587cc
+urxvt.color12: #2ca2f5
+
+! magenta
+urxvt.color5: #696ebf
+urxvt.color13: #8086e8
+
+! cyan
+urxvt.color6: #289c93
+urxvt.color14: #33c5ba
+
+! white
+urxvt.color7: #bfbaac
+urxvt.color15: #fdf6e3
+
+! urxvt Appearance
+urxvt.font: xft:DejaVu Sans Mono for Powerline:size=12
+urxvt.letterSpace: -1
+urxvt.lineSpace: 0
+urxvt.geometry: 92x24
+urxvt.cursorBlink: true
+urxvt.cursorUnderline: false
+urxvt.saveline: 2048
+urxvt.scrollBar: false
+urxvt.scrollBar_right: false
+urxvt.urgentOnBell: false
+urxvt.depth: 24
+urxvt.iso14755: false
+
+urxvt*transparent: true
+urxvt*shading: 25
+urxvt*blurRadius: 4
+urxvt.internalBorder: 2
+
+urxvt.keysym.Shift-Control-V: eval:paste_clipboard
+urxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+
+urxvt.keysym.Control-Meta-v: builtin-string:
+urxvt.keysym.Control-Meta-c: builtin-string:
