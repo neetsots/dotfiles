@@ -43,6 +43,23 @@ call plug#begin('~/.config/nvim/plugged')
 " Langage server manager
 " <<<<
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+    autocmd BufReadPost *.rs setlocal filetype=rust
+
+    " Required for operations modifying multiple buffers like rename.
+    set hidden
+
+    let g:LanguageClient_serverCommands = {
+        \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+        \ }
+
+    " Automatically start language servers.
+    let g:LanguageClient_autoStart = 1
+
+    " Maps K to hover, gd to goto definition, F2 to rename
+    nnoremap <silent> K :call LanguageClient_textDocument_hover() <CR>
+    nnoremap <silent> gd :call LanguageClient_textDocument_definition() <CR>
+    nnoremap <silent> <F2> :call LanguageClient_textDocument_rename() <CR>
 " >>>>
 
 " Airline
