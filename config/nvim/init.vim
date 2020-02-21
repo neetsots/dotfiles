@@ -168,6 +168,9 @@ nnoremap <Leader>r :%s/\<<C-r><C-w>\>/
 inoremap <C-e> <C-n><C-p>
 nnoremap <esc>^[ <esc>^[
 
+"-- Toml Configs ------------------------------------------------------
+au BufNewFile,BufRead,BufEnter config set filetype=toml
+
 "-- Trailing ----------------------------------------------------------
 au BufWritePre * %s/\s\+$//e
 au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main

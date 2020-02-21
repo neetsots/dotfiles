@@ -1,0 +1,180 @@
+[colors]
+white = #d1d1d1
+black = #222328
+darkgrey = #2e2f36
+lightgrey = #393b44
+green = #3eda9a
+secondary = #e60053
+alert = #ff2a33
+blue = #6bb6ff
+red = #ff6b6c
+
+[bar/main]
+width = 100%
+height = 20
+radius = 0.0
+fixed-center = true
+
+background = ${colors.black}
+foreground = ${colors.white}
+
+
+padding-left = 0
+padding-right = 0
+border-size=0
+
+module-margin = 0
+font-0 = "Hack Nerd Font:style=Solid:size=11.5:antialias=true;3"
+font-1 = "DejaVuSansMonoForPowerline:style=Solid:size=11:antialias=true"
+font-2 = "FontAwesome5Free:style=Solid:size=10.5:antialias=true"
+
+
+modules-left = date xwindow
+modules-center = bspwm
+modules-right = pulseaudio filesystem memory cpu eth powermenu
+
+tray-position = right
+
+wm-restack = bspwm
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xwindow]
+type = internal/xwindow
+label = " %title:0:30:...%"
+
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = 綠
+label-focused-foreground = ${colors.green}
+label-focused-padding = 1
+
+label-occupied = 祿
+label-occupied-foreground = ${colors.green}
+label-occupied-padding = 1
+
+label-urgent = 虜
+label-urgent-foreground = ${colors.alert}
+label-urgent-padding = 1
+
+label-empty = 祿
+label-empty-foreground = ${colors.green}
+label-empty-padding = 1
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+format-mounted-prefix = ""
+format-mounted-prefix-foreground = ${colors.lightgrey}
+format-mounted-prefix-background = ${colors.black}
+mount-0 = /
+
+label-mounted = "  %percentage_used%% "
+label-mounted-background = ${colors.lightgrey}
+label-mounted-foreground = ${colors.white}
+label-unmounted =  unmounted
+label-unmounted-foreground = ${colors.white}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = ""
+format-prefix-foreground = ${colors.blue}
+format-prefix-background = ${colors.darkgrey}
+label = " cpu %percentage:2%% "
+label-background = ${colors.blue}
+label-foreground = ${colors.black}
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = ""
+format-prefix-foreground = ${colors.darkgrey}
+format-prefix-background = ${colors.lightgrey}
+label = " mem %percentage_used%% "
+label-background = ${colors.darkgrey}
+label-foreground = ${colors.white}
+
+[module/eth]
+type = internal/network
+interface = enp3s0
+interval = 3.0
+
+label-connected = "褐 %ifname% "
+label-connected-foreground = ${colors.black}
+label-connected-background = ${colors.green}
+format-connected-prefix = ""
+format-connected-prefix-foreground = ${colors.green}
+format-connected-prefix-background = ${colors.blue}
+
+format-disconnected-prefix = "褐 "
+format-disconnected-prefix-foreground = ${colors.alert}
+label-disconnected = %ifname%
+
+[module/date]
+type = internal/date
+interval = 5
+
+
+date = "  %Y-%m-%d"
+time = "%H:%M "
+
+label = %date% %time%
+label-foreground = ${colors.black}
+label-background = ${colors.green}
+format-suffix = 
+format-suffix-foreground = ${colors.green}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+format-prefix = 
+format-prefix-foreground = ${colors.green}
+
+label-volume = " %percentage%% "
+label-volume-foreground = ${root.foreground}
+
+label-muted = " --  "
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+format-prefix = ""
+format-prefix-foreground = ${colors.red}
+format-prefix-background = ${colors.green}
+
+label-open = "  "
+label-open-foreground = ${colors.black}
+label-open-background = ${colors.red}
+label-close = "  "
+label-close-foreground = ${colors.black}
+label-close-background = ${colors.red}
+label-separator = " "
+label-separator-foreground = ${colors.black}
+label-separator-background = ${colors.red}
+
+menu-0-0 = "reboot"
+menu-0-0-exec = systemctl reboot
+menu-0-0-foreground = ${colors.black}
+menu-0-0-background = ${colors.red}
+menu-0-1 = "shutdown "
+menu-0-1-exec = systemctl poweroff
+menu-0-1-foreground = ${colors.black}
+menu-0-1-background = ${colors.red}
+
+[settings]
+screenchange-reload = true
+pseudo-transparency = true
+
+[global/wm]
+margin-bottom = 0
+margin-top = 1
+border-size=2
+
