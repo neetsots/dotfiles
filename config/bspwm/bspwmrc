@@ -2,13 +2,13 @@
 
 sxhkd &
 
-bspc monitor -d I II III IV
+bspc monitor -d I II III IV V VI
 
 bspc config border_width         3
-bspc config window_gap           4
-bspc config active_border_color \#3EDA9A
-bspc config focused_border_color \#3EDA9A
-bspc config normal_border_color \#222327
+bspc config window_gap           8
+bspc config active_border_color  \#ffffff
+bspc config focused_border_color \#ffffff
+bspc config normal_border_color  \#222328
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
@@ -18,4 +18,4 @@ bspc rule -a Gimp desktop='^4' state=floating follow=on
 bspc rule -a vlc state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
-feh --bg-center ~/Pictures/mountain.jpg
+feh --bg-fill ~/Pictures/beach-blue-dawn.jpg
