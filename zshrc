@@ -5,8 +5,7 @@ precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 
 # Prompt
-PROMPT="%F{220}%~%F{208} "\$vcs_info_msg_0_' '$'\n'"%(!.#.>) %f"
-RPROMPT="%F{123}%*"
+PROMPT="%F{208}%~%F{123} "\$vcs_info_msg_0_' '$'\n'"%F{208}%(!.#.>) %f"
 zstyle ':vcs_info:git:*' formats '%b'
 
 # Settings
