@@ -1,0 +1,23 @@
+configuration {
+	modi: "window,run,ssh";
+	width: 200;
+	color-window: "#00222327, #ffffffff, #00222327";
+	color-normal: "#00222327, #ffffffff, #00222327, #00222327, #ff1dff8d";
+	color-urgent: "#00222327, #ffffffff, #00222327, #00222327, #00222327";
+	color-active: "#00222327, #ff7cfc00, #00222327, #00222327, #00000000";
+ 	font: "Noto Mono 14";
+  separator-style: "none";
+	location: 0;
+	terminal: "kitty";
+	yoffset: 300;
+	hide-scrollbar: true;
+	display-run: "";
+	display-window: " ";
+	display-ssh: " ";
+	fixed-num-lines: false;
+	fullscreen: true;
+  lines: 1;
+  padding: 400;
+  bw: 0;
+	eh: 1;
+}

@@ -4,19 +4,19 @@
 
 # terminal emulator
 super + Return
-  kitty
+	kitty
 
-# explorer
-super + e
-  kitty -e bash -c "tmux & ranger"
-
-# firefox
+# Firefox
 super + n
-  firefox
+	firefox-developer-edition
+
+# Ranger
+super + r
+	ranger
 
 # program launcher
 super + @space
-	dmenu_run -fn Noto -nb "#ffffff" -nf "#222328"
+	rofi -show run
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -77,10 +77,6 @@ super + {_,shift + }c
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
-#
-# focus the specific desktop in the current monitor
-super + {1-6}
-	bspc desktop -f ^{1-6}
 
 # focus the last node/desktop
 super + {grave,Tab}
