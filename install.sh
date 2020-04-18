@@ -3,6 +3,7 @@ mkdir -p ~/.config/nvim
 mkdir -p ~/.config/bspwm
 mkdir -p ~/.config/sxhkd
 mkdir -p ~/.config/polybar
+mkdir -p ~/.config/rofi
 mkdir -p ~/.config/coc/extensions
 
 # Copy files for installation
@@ -12,6 +13,7 @@ cp bashrc ~/.bashrc
 cp config/bspwm/bspwmrc ~/.config/bspwm/bspwmrc
 cp config/sxhkd/sxhkdrc ~/.config/sxhkd/sxhkdrc
 cp config/polybar/config ~/.config/polybar/config
+cp config/rofi/config.rasi ~/.config/rofi/config.rasi
 
 cp tmux/tmux.conf ~/.tmux.conf
 cp tmux/tmux-status.conf ~/.tmux-status.conf

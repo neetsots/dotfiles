@@ -1,7 +1,7 @@
 configuration {
 	modi: "window,run,ssh";
 	width: 200;
-	color-window: "#00222327, #ffffffff, #00222327";
+	color-window: "#aa222327, #ffffffff, #00222327";
 	color-normal: "#00222327, #ffffffff, #00222327, #00222327, #ff1dff8d";
 	color-urgent: "#00222327, #ffffffff, #00222327, #00222327, #00222327";
 	color-active: "#00222327, #ff7cfc00, #00222327, #00222327, #00000000";

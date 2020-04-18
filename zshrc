@@ -18,7 +18,7 @@ compinit
 # GIT setup
 
 # Prompt
-PROMPT="%F{208}%~%F{123} "\$vcs_info_msg_0_' '$'\n'"%F{208}%(!.#.>) %f"
+PROMPT="%F{#00ff80}%~%F{123} "\$vcs_info_msg_0_' '$'\n'"%F{#00ff80}%(!.#.>) %f"
 zstyle ':vcs_info:git:*' formats '%b'
 
 # Settings

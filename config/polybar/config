@@ -4,12 +4,12 @@ black = #aa222328
 transparent = #00000000
 darkgrey = #2e2f36
 lightgrey = #393b44
-green = #1dff8d
+green = #00ff80
 secondary = #e60053
 alert = #ff2a33
 blue = #59adff
-red = #ff1d1e
-orange = #ffa34e
+red = #ff0040
+orange = #ff8000
 
 [bar/main]
 width = 100%
@@ -57,10 +57,10 @@ label = " %title:0:30:...%"
 type = internal/bspwm
 
 label-focused = " %index% "
-label-focused-foreground = ${colors.white}
+label-focused-foreground = ${colors.green}
 
 label-occupied = " %index% "
-label-occupied-foreground = ${colors.orange}
+label-occupied-foreground = ${colors.white}
 
 label-urgent = " %index% "
 label-urgent-foreground = ${colors.alert}
