@@ -11,8 +11,8 @@ super + n
 	firefox-developer-edition
 
 # Ranger
-super + r
-	ranger
+super + e
+	kitty -e ranger
 
 # program launcher
 super + @space

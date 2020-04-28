@@ -1,5 +1,7 @@
 #! /bin/sh
 
+xset s off  #Disable screen saver blanking
+xset -dpms  # Turn off DPMS
 sxhkd &
 picom -b -c &
 polybar main &
