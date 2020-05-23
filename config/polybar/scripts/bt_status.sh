@@ -18,7 +18,7 @@ display_status() {
   display=""
   if [ -z "$(bluetoothctl show | grep "Powered: yes")" ]
   then
-    display="%{F#222328}"
+    display="%{F#2f343f}"
   else
     paired=$(get_paired)
     if [ -z paired ]; then
@@ -32,17 +32,17 @@ display_status() {
           break
         else
           if [ $t -eq 0 ]; then
-            display="%{F#00ff80}"
+            display="%{F#2cda9d}"
             break
           else
             display=$display$name" / "
           fi
         fi
-        display="%{F#00ff80}"$display
+        display="%{F#2cda9d}"$display
       done
     fi
   fi
-  echo $display""
+  echo $display"  "
 }
 
 trap "toggle" USR1

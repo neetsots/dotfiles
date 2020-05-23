@@ -2,6 +2,7 @@
 mkdir -p ~/.config/nvim
 mkdir -p ~/.config/bspwm
 mkdir -p ~/.config/sxhkd
+mkdir -p ~/.config/kitty
 mkdir -p ~/.config/polybar/scripts
 mkdir -p ~/.config/rofi
 mkdir -p ~/.config/coc/extensions
@@ -12,6 +13,7 @@ cp bashrc ~/.bashrc
 
 cp config/bspwm/bspwmrc ~/.config/bspwm/bspwmrc
 cp config/sxhkd/sxhkdrc ~/.config/sxhkd/sxhkdrc
+cp config/kitty/kitty.conf ~/.config/kitty/kitty.conf
 cp config/polybar/config ~/.config/polybar/config
 cp -r config/polybar/scripts/ ~/.config/polybar/scripts/
 cp config/rofi/config.rasi ~/.config/rofi/config.rasi

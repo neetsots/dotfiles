@@ -1,23 +1,24 @@
 [colors]
-white = #ffffff
-black = #aa222328
-transparent = #00000000
-darkgrey = #2e2f36
-lightgrey = #393b44
-green = #00ff80
-secondary = #e60053
-alert = #ff2a33
-blue = #59adff
-red = #ff0040
-orange = #ff8000
+transparent  =  #00000000
+
+red       = #FB7DA7
+purple    = #a18bd3
+yellow    = #ffce5b
+cyan      = #50c6d8
+green     = #2cda9d
+viridian  = #4C8273
+darkblack = #1c1c1c
+grey      = #818e8e
+white     = #efeeea
+black     = #2f343f
 
 [bar/main]
-width = 100%
-height = 2%
-radius = 0.5
+width   =  100%
+height  =  2%
+radius  =  0.5
 
 background = ${colors.transparent}
-foreground = ${colors.white}
+foreground = ${colors.yellow}
 
 padding = 1
 border-size=0
@@ -28,6 +29,7 @@ font-0 = "Noto Sans:style=Regular:size=12:weight=bold:antialias=true;3"
 font-1 = "FontAwesome5Free:style=Solid:size=12:antialias=true;3"
 font-2 = "FontAwesome5Free:style=Regular:size=12:antialias=true;3"
 font-3 = "FontAwesome5Brands:style=Regular:size=12:antialias=true;3"
+font-4 = "DejaVu Sans Mono For Powerline:style=Regular:size=12:antialias=true;3"
 dpi-x = 0
 dpi-y = 0
 
@@ -38,7 +40,6 @@ modules-right = date pulseaudio filesystem memory cpu network bluetooth powermen
 tray-position = right
 
 wm-restack = bspwm
-separator = %{F#222328} | %{F-}
 
 scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
@@ -57,19 +58,19 @@ label = " %title:0:30:...%"
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = " %index% "
-label-focused-foreground = ${colors.green}
+label-focused = "  "
+label-focused-foreground = ${colors.yellow}
 
-label-occupied = " %index% "
+label-occupied = "  "
 label-occupied-foreground = ${colors.white}
 
-label-urgent = " %index% "
-label-urgent-foreground = ${colors.alert}
+label-urgent = "  "
+label-urgent-foreground = ${colors.red}
 
-label-empty = " %index% "
-label-empty-foreground = ${colors.black}
+label-empty = "  "
+label-empty-foreground = ${colors.white}
 
-label-separator = |
+label-separator =
 label-separator-padding = 0
 label-separator-foreground = ${colors.black}
 
@@ -79,32 +80,32 @@ interval = 25
 
 mount-0 = /
 
-label-mounted = " %percentage_used%% "
-label-mounted-foreground = ${colors.white}
+label-mounted = "  %percentage_used%% "
+label-mounted-foreground = ${colors.black}
 label-unmounted = / unmounted
-label-unmounted-foreground = ${colors.white}
+label-unmounted-foreground = ${colors.black}
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-label = "   %percentage:2%% "
-label-foreground = ${colors.white}
+label = "  %percentage:2%% "
+label-foreground = ${colors.black}
 
 [module/memory]
 type = internal/memory
 interval = 3
 label = "   %percentage_used%% "
-label-foreground = ${colors.white}
+label-foreground = ${colors.black}
 
 [module/network]
 type = internal/network
 interface = wlan0
 interval = 3
 
-label-connected = "  %upspeed:3%   %downspeed:3%"
+label-connected = "   %upspeed:3%   %downspeed:3%"
 label-connected-foreground = ${colors.green}
 
-label-disconnected = " %ifname% disconnected"
+label-disconnected = "  %ifname% disconnected"
 label-disconnected-foreground = ${colors.red}
 
 [module/bluetooth]
@@ -118,13 +119,14 @@ type = internal/date
 interval = 1.0
 date = %d/%m/%Y
 time = %H:%M
-label = %{A1:firefox-developer-edition "https\://calendar.google.com/calendar/r?pli=1":} %date% - %time%%{A}
+label = " %{A1:firefox-developer-edition "https\://calendar.google.com/calendar/r?pli=1":} %date% - %time%%{A}  "
+label-foreground = ${colors.cyan}
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume = " <ramp-volume> <label-volume> "
-format-volume-foreground = ${root.foreground}
+format-volume-foreground = ${colors.black}
 
 label-muted =  muted
 label-muted-foreground = ${colors.red}
@@ -140,7 +142,7 @@ type = custom/menu
 expand-right = true
 
 label-open = "  "
-label-open-foreground = ${colors.white}
+label-open-foreground = ${colors.yellow}
 label-close = "  "
 label-close-foreground = ${colors.white}
 label-separator = " "
@@ -148,7 +150,7 @@ label-separator-foreground = ${colors.black}
 
 menu-0-0 = "  "
 menu-0-0-exec = systemctl reboot
-menu-0-0-foreground = ${colors.orange}
+menu-0-0-foreground = ${colors.yellow}
 menu-0-1 = "  "
 menu-0-1-exec = systemctl poweroff
 menu-0-1-foreground = ${colors.red}
