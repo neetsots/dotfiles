@@ -62,7 +62,7 @@ label-focused = "  "
 label-focused-foreground = ${colors.yellow}
 
 label-occupied = "  "
-label-occupied-foreground = ${colors.white}
+label-occupied-foreground = ${colors.yellow}
 
 label-urgent = "  "
 label-urgent-foreground = ${colors.red}
