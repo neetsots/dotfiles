@@ -25,49 +25,36 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tell-k/vim-autopep8'
 " >>>>
 
-
 " Langage server manager
 " <<<<
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
         nmap <Leader>n :CocCommand explorer<CR>
 " >>>>
 
-" Lightline
-" <<<<<
-  Plug 'itchyny/lightline.vim'
-        let g:lightline = { 'colorscheme': 'candid' }
-" >>>>
-
-" Syntax
+" Colorscheme
 " <<<<
-  Plug 'othree/html5.vim'
-  Plug 'cespare/vim-toml'
-" >>>>
+  Plug 'emmehandes/tetradic'
+" <<<<
 
 " Tags
 " <<<<
   Plug 'craigemery/vim-autotag'
 " >>>>
 "
-" Highlighting
+" Syntax
 " <<<<
+  Plug 'othree/html5.vim'
+  Plug 'cespare/vim-toml'
+  Plug 'fatih/vim-go'
   Plug 'octol/vim-cpp-enhanced-highlight'
   Plug 'rust-lang/rust.vim'
   Plug 'nvie/vim-flake8'
   Plug 'pangloss/vim-javascript'
   Plug 'plasticboy/vim-markdown'
   Plug 'stephpy/vim-yaml'
+  Plug 'jacoborus/tender.vim'
 " >>>>
-"
-" Colorscheme
-" <<<<
-  Plug 'emmehandes/tetradic'
-  Plug 'emmehandes/candid.vim'
-  Plug 'smallwat3r/vim-hashpunk-sw'
-  Plug 'abnt713/vim-hashpunk'
-  Plug 'kaicataldo/material.vim'
-" <<<<
-"
+
 " Git
 " <<<<
   Plug 'airblade/vim-gitgutter'
@@ -107,7 +94,7 @@ inoremap <C-e> <C-n><C-p>
 nnoremap <esc>^[ <esc>^[
 
 "-- Trailing ----------------------------------------------------------
-au BufWritePre * %s/\s\+$//e
+au BufWritePre *.rs,*.go,*.txt,*.c*,*.py %s/\s\+$//e
 au BufNewFile,BufRead,BufEnter config set filetype=toml
 au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
 au BufWinLeave *.py !autopep8 %:p
@@ -146,12 +133,42 @@ set noshiftround
 set lazyredraw
 set termguicolors
 set background=dark
-colorscheme candid
-let g:material_theme_style = 'lighter'
-
-"-- Remove tildes....
-highlight EndOfBuffer guifg=None guibg=None
-highlight NonText guibg=none
+colorscheme tetradric
 
 set clipboard=unnamedplus
 set cursorline
+
+"-- Statusline
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+let g:currentMode={
+       \ 'n'  : '%#NormalColor#',
+       \ 'v'  : '%#VisualColor#',
+       \ 'V'  : '%#VisualColor#',
+       \ '' : '%#VisualColor#',
+       \ 'i'  : '%#InsertColor#',
+       \ 'R'  : '%#ReplaceColor#',
+       \ 'c'  : '',
+       \}
+
+function! Modline(statusline) abort
+  let modus = mode(1)
+  let lab = get(g:currentMode, modus, modus)
+  return lab.a:statusline
+endfunction
+set statusline&
+if empty(&statusline)
+  set statusline=%{StatuslineGit()}
+  set statusline+=%f\ %m❯%=\  
+  set statusline+=❮\ %{&fileencoding?&fileencoding:&encoding}\ ❮\ %p%%\ ❮\ %l:%c\ 
+endif
+let statusline=&statusline
+set statusline=%!Modline(statusline)
+set noshowmode
