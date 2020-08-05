@@ -4,62 +4,62 @@
 let mapleader="\<Space>"
 
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
-    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
 endif
 
 call plug#begin('~/.config/nvim/plugged')
 " Research
 " <<<<
-  Plug 'jremmen/vim-ripgrep'
-        map <Leader>R :Rg<CR>
-  Plug 'junegunn/fzf'
-        map <Leader>f :FZF<CR>
-  Plug 'majutsushi/tagbar'
-        map <Leader>t :TagbarToggle<CR>
+Plug 'jremmen/vim-ripgrep'
+map <Leader>R :Rg<CR>
+Plug 'junegunn/fzf'
+map <Leader>f :FZF<CR>
+Plug 'majutsushi/tagbar'
+map <Leader>t :TagbarToggle<CR>
 " >>>>
 
 " Linting
 " <<<<
-  Plug 'tell-k/vim-autopep8'
+Plug 'tell-k/vim-autopep8'
 " >>>>
 
 " Langage server manager
 " <<<<
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-        nmap <Leader>n :CocCommand explorer<CR>
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+nmap <Leader>n :CocCommand explorer<CR>
 " >>>>
 
 " Colorscheme
 " <<<<
-  Plug 'emmehandes/tetradic'
+Plug 'emmehandes/tetradic'
 " <<<<
 
 " Tags
 " <<<<
-  Plug 'craigemery/vim-autotag'
+Plug 'craigemery/vim-autotag'
 " >>>>
 "
 " Syntax
 " <<<<
-  Plug 'othree/html5.vim'
-  Plug 'cespare/vim-toml'
-  Plug 'fatih/vim-go'
-  Plug 'octol/vim-cpp-enhanced-highlight'
-  Plug 'rust-lang/rust.vim'
-  Plug 'nvie/vim-flake8'
-  Plug 'pangloss/vim-javascript'
-  Plug 'plasticboy/vim-markdown'
-  Plug 'stephpy/vim-yaml'
-  Plug 'jacoborus/tender.vim'
+Plug 'othree/html5.vim'
+Plug 'cespare/vim-toml'
+Plug 'fatih/vim-go'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'rust-lang/rust.vim'
+Plug 'nvie/vim-flake8'
+Plug 'pangloss/vim-javascript'
+Plug 'plasticboy/vim-markdown'
+Plug 'stephpy/vim-yaml'
+Plug 'jacoborus/tender.vim'
 " >>>>
 
 " Git
 " <<<<
-  Plug 'airblade/vim-gitgutter'
-  Plug 'tpope/vim-fugitive'
-  Plug 'junegunn/gv.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 " >>>>
 call plug#end()
 
@@ -137,6 +137,8 @@ colorscheme tetradric
 
 set clipboard=unnamedplus
 set cursorline
+set noshowmode
+set noswapfile
 
 "-- Statusline
 function! GitBranch()
@@ -149,26 +151,58 @@ function! StatuslineGit()
 endfunction
 
 let g:currentMode={
-       \ 'n'  : '%#NormalColor#',
-       \ 'v'  : '%#VisualColor#',
-       \ 'V'  : '%#VisualColor#',
-       \ '' : '%#VisualColor#',
-       \ 'i'  : '%#InsertColor#',
-       \ 'R'  : '%#ReplaceColor#',
-       \ 'c'  : '',
-       \}
+      \ 'n'  : '%#NormalColor#',
+      \ 'v'  : '%#VisualColor#',
+      \ 'V'  : '%#VisualColor#',
+      \ '' : '%#VisualColor#',
+      \ 'i'  : '%#InsertColor#',
+      \ 'R'  : '%#ReplaceColor#',
+      \ 'c'  : '',
+      \}
 
-function! Modline(statusline) abort
-  let modus = mode(1)
-  let lab = get(g:currentMode, modus, modus)
-  return lab.a:statusline
+function! LineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
-set statusline&
-if empty(&statusline)
-  set statusline=%{StatuslineGit()}
-  set statusline+=%f\ %m❯%=\  
-  set statusline+=❮\ %{&fileencoding?&fileencoding:&encoding}\ ❮\ %p%%\ ❮\ %l:%c\ 
-endif
-let statusline=&statusline
-set statusline=%!Modline(statusline)
-set noshowmode
+
+function! ActiveLine() abort
+  let modus = mode(1)
+  let l:statusline  = ""
+  let l:statusline .= get(g:currentMode, modus, modus)
+  let l:statusline .= LineGit()
+  let l:statusline .="%f\ %m❯%=\ "
+  let l:statusline .="❮\ %{&fileencoding?&fileencoding:&encoding}\ ❮\ %p%%\ ❮\ %l:%c\ "
+  return l:statusline
+endfunction
+
+function! InactiveLine() abort
+  let modus = mode(1)
+  let l:statusline  = "%#NormalColor#"
+  let l:statusline .= LineGit()
+  let l:statusline .="%f\ %m❯%=\ "
+  let l:statusline .="❮\ %{&fileencoding?&fileencoding:&encoding}\ ❮\ %p%%\ ❮\ %l:%c\ "
+  return l:statusline
+endfunction
+
+function! s:UpdateInactiveWindows()
+  for winnum in range(1, winnr('$'))
+    if winnum != winnr()
+      call setwinvar(winnum, '&statusline', '%!InactiveLine()')
+    endif
+  endfor
+endfunction
+
+function! s:StatusLine(mode)
+    if a:mode == "inactive"
+        setlocal statusline=%!InactiveLine()
+    else
+        setlocal statusline=%!ActiveLine()
+    endif
+endfunction
+
+augroup StatuslineAutocmds
+  autocmd!
+  autocmd VimEnter              * call s:UpdateInactiveWindows()
+  autocmd WinEnter,BufWinEnter  * call s:StatusLine("active")
+  autocmd WinLeave              * call s:StatusLine("inactive")
+augroup END
