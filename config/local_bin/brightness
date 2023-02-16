@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# Start a _brightnessosition manager.
+# (x_brightnessmgr in this case)
+
+_brightnesshelp() {
+    echo "Brigthness Manager:"
+    echo "   increase +10%:      brightness -i"
+    echo "   decrease -10% :     brightness -d"
+    echo "                                  "
+    exit
+}
+
+increase_brightness() {
+  brightnessctl s $(($(brightnessctl g) + $(($(brightnessctl g) * 10 / 100))))
+}
+
+decrease_brightness() {
+  brightnessctl s $(($(brightnessctl g) - $(($(brightnessctl g) * 10 / 100))))
+}
+
+case "$1" in
+    "-i") increase_brightness ;;
+    "-d") decrease_brightness ;;
+    *)    _brightnesshelp ;;
+esac
+

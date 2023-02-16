@@ -2,21 +2,71 @@
 # wm independent hotkeys
 #
 
+## Display
+XF86MonBrightnessDown
+  brightness -d
+
+XF86MonBrightnessUp
+  brightness -i
+#
+# Sound
+XF86AudioRaiseVolume
+  pamixer -i 5
+
+XF86AudioLowerVolume
+  pamixer -d 5
+
+XF86AudioMute
+  pamixer 47 -t
+
+XF86AudioMicMute
+  pamixer --source 113 -t
+
+Print
+  flameshot gui
+
+# Locking
+super + v
+  betterlockscreen -l dim
+
 # terminal emulator
 super + Return
 	kitty
 
-# Firefox
+# Screenshot
+super + alt + s
+	kitt -e scrot -s
+
+# GoogleChrome
 super + n
-	firefox-developer-edition
+  google-chrome-stable
+
+# Calendar
+super + c
+  google-chrome-stable https://calendar.google.com/calendar/u/0/r
 
 # Ranger
 super + e
 	kitty -e ranger
 
+# Bottom, pc manager
+super + r
+  bspc node @parent -R 90
+
+super + b
+	kitty -e btm
+
+# Increase brightness
+super + shift + \+
+  kitty -e /home/elie/.bin/brightness -i
+
+# Decrease brightness
+super + shift + \-
+  kitty -e /home/elie/.bin/brightness -d
+
 # program launcher
-super + @space
-	rofi -show run
+super + space
+	rofi -modi "run,drun,ssh" -show run -icon-theme "Papirus" -show-icons #-run-command "{kitty} -e '{cmd}; read -n 1 -s'"
 
 # make sxhkd reload its configuration files:
 super + Escape

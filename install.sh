@@ -3,13 +3,10 @@ mkdir -p ~/.config/nvim
 mkdir -p ~/.config/bspwm
 mkdir -p ~/.config/sxhkd
 mkdir -p ~/.config/kitty
-mkdir -p ~/.config/polybar/scripts
 mkdir -p ~/.config/rofi
-mkdir -p ~/.config/coc/extensions
 
 # Copy files for installation
 cp zshrc ~/.zshrc
-cp bashrc ~/.bashrc
 
 cp config/bspwm/bspwmrc ~/.config/bspwm/bspwmrc
 cp config/sxhkd/sxhkdrc ~/.config/sxhkd/sxhkdrc

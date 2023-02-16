@@ -1,23 +1,54 @@
+/** Basic config file **/
 configuration {
-	modi: "window,run,ssh";
-	width: 200;
-	color-window: "#aa222327, #ffffffff, #00222327";
-	color-normal: "#00222327, #ffffffff, #00222327, #00222327, #ff1dff8d";
-	color-urgent: "#00222327, #ffffffff, #00222327, #00222327, #00222327";
-	color-active: "#00222327, #ff7cfc00, #00222327, #00222327, #00000000";
- 	font: "Noto Mono 14";
-  separator-style: "none";
-	location: 0;
-	terminal: "kitty";
-	yoffset: 300;
-	hide-scrollbar: true;
-	display-run: "";
-	display-window: " ";
-	display-ssh: " ";
-	fixed-num-lines: false;
-	fullscreen: true;
-  lines: 1;
-  padding: 400;
-  bw: 0;
-	eh: 1;
+  show-icons:         true;
+  icon-theme:         "Papirus";
+}
+
+window {
+    location:              center;
+    width:                 20%;
+    padding:               200px;
+    children:              [ entry, listview ];
+    fullscreen:            true;
+    background-color:      #222327CC;
+    handle-color:          #22232700;
+    border-color:          #22232700;
+    text-color:            #2cda9d;
+}
+
+listview {
+    spacing:    5px;
+    lines:      10;
+    text-color:            #2cda9d;
+}
+
+entry {
+    expand:     false;
+    width:      5em;
+    text-color:            #2cda9d;
+}
+
+scrollbar {
+    width:        0;
+    border:       0;
+    handle-width: 0;
+    padding:      0;
+}
+
+element {
+    padding: 0px 2px;
+    width:      5em;
+}
+
+* {
+    highlight:  bold;
+    text-color:                  #2cda9d;
+    font:                        "Times New Roman 30";
+    separatorcolor:              #00000000;
+    background:                  #00000000;
+    alternate-normal-background: #00000000;
+    foreground:                  #2cda9d;
+    alternate-normal-foreground: #2cda9d;
+    selected-normal-background: #2cda9d;
+    selected-normal-foreground: #000000;
 }
