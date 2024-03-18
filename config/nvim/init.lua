@@ -117,9 +117,9 @@ vim.diagnostic.config({
 -- formatting
 function format()
   if vim.bo.filetype == "go" then
-    vim.cmd("!go run mvdan.cc/gofumpt -w -extra .")
+    vim.cmd("!gofumpt -w -extra .")
   elseif vim.bo.filetype == "python" then
-    vim.cmd("silent !black .")
+    vim.cmd("silent !black --line-length 80 .")
   elseif vim.bo.filetype == "rust" then
     vim.cmd("%!cargo fmt")
   elseif vim.bo.filetype == "json" then
